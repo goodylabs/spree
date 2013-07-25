@@ -109,3 +109,4 @@ Spree.ready ($) ->
     # Activate already checked payment method if form is re-rendered
     # i.e. if user enters invalid data
     ($ 'input[type="radio"]:checked').click()
+    ($ '#order_use_billing').click()
