@@ -1,4 +1,5 @@
-Spree.addImageHandlers = ->
+$ ->
+  Spree.addImageHandlers = ->
   thumbnails = ($ '#product-images ul.thumbnails')
   ($ '#main-image').data 'selectedThumb', ($ '#main-image img').attr('src')
   thumbnails.find('li').eq(0).addClass 'selected'
@@ -16,25 +17,24 @@ Spree.addImageHandlers = ->
   thumbnails.find('li').on 'mouseleave', (event) ->
     ($ '#main-image img').attr 'src', ($ '#main-image').data('selectedThumb')
 
-Spree.showVariantImages = (variantId) ->
-  ($ 'li.vtmb').hide()
-  ($ 'li.tmb-' + variantId).show()
-  currentThumb = ($ '#' + ($ '#main-image').data('selectedThumbId'))
-  if not currentThumb.hasClass('vtmb-' + variantId)
-    thumb = ($ ($ 'ul.thumbnails li:visible.vtmb').eq(0))
-    thumb = ($ ($ 'ul.thumbnails li:visible').eq(0)) unless thumb.length > 0
-    newImg = thumb.find('a').attr('href')
-    ($ 'ul.thumbnails li').removeClass 'selected'
-    thumb.addClass 'selected'
-    ($ '#main-image img').attr 'src', newImg
-    ($ '#main-image').data 'selectedThumb', newImg
-    ($ '#main-image').data 'selectedThumbId', thumb.attr('id')
+  Spree.showVariantImages = (variantId) ->
+    ($ 'li.vtmb').hide()
+    ($ 'li.tmb-' + variantId).show()
+    currentThumb = ($ '#' + ($ '#main-image').data('selectedThumbId'))
+    if not currentThumb.hasClass('vtmb-' + variantId)
+      thumb = ($ ($ 'ul.thumbnails li:visible.vtmb').eq(0))
+      thumb = ($ ($ 'ul.thumbnails li:visible').eq(0)) unless thumb.length > 0
+      newImg = thumb.find('a').attr('href')
+      ($ 'ul.thumbnails li').removeClass 'selected'
+      thumb.addClass 'selected'
+      ($ '#main-image img').attr 'src', newImg
+      ($ '#main-image').data 'selectedThumb', newImg
+      ($ '#main-image').data 'selectedThumbId', thumb.attr('id')
 
-Spree.updateVariantPrice = (variant) ->
-  variantPrice = variant.data('price')
-  ($ '.price.selling').text(variantPrice) if variantPrice
+  Spree.updateVariantPrice = (variant) ->
+    variantPrice = variant.data('price')
+    ($ '.price.selling').text(variantPrice) if variantPrice
 
-$ ->
   Spree.addImageHandlers()
   Spree.showVariantImages ($ '#product-variants input[type="radio"]').eq(0).attr('value') if ($ '#product-variants input[type="radio"]').length > 0
   ($ '#product-variants input[type="radio"]').click (event) ->
