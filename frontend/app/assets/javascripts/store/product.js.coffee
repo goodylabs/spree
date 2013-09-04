@@ -11,11 +11,11 @@ $ ->
         ($ event.currentTarget).parent('li').addClass 'selected'
       false
 
-  thumbnails.find('li').on 'mouseenter', (event) ->
-    ($ '#main-image img').attr 'src', ($ event.currentTarget).find('a').attr('href')
+    thumbnails.find('li').on 'mouseenter', (event) ->
+      ($ '#main-image img').attr 'src', ($ event.currentTarget).find('a').attr('href')
 
-  thumbnails.find('li').on 'mouseleave', (event) ->
-    ($ '#main-image img').attr 'src', ($ '#main-image').data('selectedThumb')
+    thumbnails.find('li').on 'mouseleave', (event) ->
+      ($ '#main-image img').attr 'src', ($ '#main-image').data('selectedThumb')
 
   Spree.showVariantImages = (variantId) ->
     ($ 'li.vtmb').hide()
