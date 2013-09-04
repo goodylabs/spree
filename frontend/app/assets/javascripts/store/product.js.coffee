@@ -1,15 +1,15 @@
 $ ->
   Spree.addImageHandlers = ->
-  thumbnails = ($ '#product-images ul.thumbnails')
-  ($ '#main-image').data 'selectedThumb', ($ '#main-image img').attr('src')
-  thumbnails.find('li').eq(0).addClass 'selected'
-  thumbnails.find('a').on 'click', (event) ->
-    ($ '#main-image').data 'selectedThumb', ($ event.currentTarget).attr('href')
-    ($ '#main-image').data 'selectedThumbId', ($ event.currentTarget).parent().attr('id')
-    ($ this).mouseout ->
-      thumbnails.find('li').removeClass 'selected'
-      ($ event.currentTarget).parent('li').addClass 'selected'
-    false
+    thumbnails = ($ '#product-images ul.thumbnails')
+    ($ '#main-image').data 'selectedThumb', ($ '#main-image img').attr('src')
+    thumbnails.find('li').eq(0).addClass 'selected'
+    thumbnails.find('a').on 'click', (event) ->
+      ($ '#main-image').data 'selectedThumb', ($ event.currentTarget).attr('href')
+      ($ '#main-image').data 'selectedThumbId', ($ event.currentTarget).parent().attr('id')
+      ($ this).mouseout ->
+        thumbnails.find('li').removeClass 'selected'
+        ($ event.currentTarget).parent('li').addClass 'selected'
+      false
 
   thumbnails.find('li').on 'mouseenter', (event) ->
     ($ '#main-image img').attr 'src', ($ event.currentTarget).find('a').attr('href')
